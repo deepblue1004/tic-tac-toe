@@ -19,7 +19,7 @@ export default {
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
-    "~assets/scss/colors.scss",
+    // "~assets/scss/_colors.scss",
     "@fortawesome/fontawesome-svg-core/styles.css",
   ],
 
@@ -33,10 +33,10 @@ export default {
   buildModules: [],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: ["@nuxtjs/style-resources"],
-  styleResources: {
-    scss: ["./assets/scss/*.scss"],
-  },
+  // modules: ["@nuxtjs/style-resources"],
+  // styleResources: {
+  //   scss: ["./assets/scss/*.scss"],
+  // },
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
 

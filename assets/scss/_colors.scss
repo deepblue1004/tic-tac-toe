@@ -1,0 +1,33 @@
+@use "sass:color" as *;
+
+$primary: #4dafff;
+$primary-light: scale($primary, $lightness: 30%);
+$primary-lighter: scale($primary, $lightness: 50%);
+$primary-lightest: scale($primary, $lightness: 70%);
+$primary-dark: scale($primary, $lightness: -30%);
+$primary-darker: scale($primary, $lightness: -50%);
+$primary-darkest: scale($primary, $lightness: -70%);
+
+$secondary: #ff9d4d;
+$secondary-light: scale($secondary, $lightness: 30%);
+$secondary-lighter: scale($secondary, $lightness: 50%);
+$secondary-lightest: scale($secondary, $lightness: 70%);
+$secondary-dark: scale($secondary, $lightness: -30%);
+$secondary-darker: scale($secondary, $lightness: -50%);
+$secondary-darkest: scale($secondary, $lightness: -70%);
+
+$tertiary: #ffeb3b;
+$tertiary-light: scale($tertiary, $lightness: 30%);
+$tertiary-lighter: scale($tertiary, $lightness: 50%);
+$tertiary-lightest: scale($tertiary, $lightness: 70%);
+$tertiary-dark: scale($tertiary, $lightness: -30%);
+$tertiary-darker: scale($tertiary, $lightness: -50%);
+$tertiary-darkest: scale($tertiary, $lightness: -70%);
+
+$success: #56ff4d;
+$success-light: scale($success, $lightness: 30%);
+$success-lighter: scale($success, $lightness: 50%);
+$success-lightest: scale($success, $lightness: 70%);
+$success-dark: scale($success, $lightness: -30%);
+$success-darker: scale($success, $lightness: -50%);
+$success-darkest: scale($success, $lightness: -70%);

@@ -100,17 +100,21 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "~assets/scss/_colors";
+@import "~assets/scss/_mixins";
+
 .landing-title {
   padding: 20px 0;
   text-align: center;
   font-size: xxx-large;
   color: $primary-darker;
-  background-color: $secondary;
+  border-bottom: 5px solid $secondary;
   font-family: system-ui;
   font-weight: bolder;
 }
 
 #landing-body {
+  @include centerer;
   display: grid;
   grid-template-columns: 250px 250px;
   row-gap: 10px;
@@ -118,12 +122,9 @@ export default {
   justify-items: center;
   justify-content: center;
   padding: 20px;
-  position: absolute;
-  top:
   box-sizing: border-box;
-  border: 10px solid $primary-darkest;
-  background-color: $primary-dark;
-
+  border: 5px solid $primary-darkest;
+  background-color: $primary;
 
   .landing-body-title {
     font-size: xx-large;
@@ -145,6 +146,11 @@ export default {
       opacity: 0;
       position: fixed;
       width: 0;
+
+      &:checked + label {
+        background-color: $tertiary-lighter;
+        border-color: $tertiary;
+      }
     }
 
     label {
@@ -164,11 +170,6 @@ export default {
       svg {
         font-size: xx-large;
       }
-    }
-
-    input[type="radio"]:checked + label {
-      background-color: $tertiary-lighter;
-      border-color: $tertiary;
     }
   }
 }
