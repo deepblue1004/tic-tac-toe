@@ -1,6 +1,7 @@
 <template>
   <div>
     <game-board :size="this.$route.params.size"></game-board>
+    <span> </span>
   </div>
 </template>
 
