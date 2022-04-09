@@ -2,53 +2,75 @@
   <div>
     <div class="landing-title">YL's Tic Tac Toe</div>
     <div id="landing-body">
-      <div id="game-mode-title" class="landing-body-title">Game Mode</div>
-      <div id="game-mode-value" class="landing-body-value">
-        <input
-          type="radio"
-          id="mode-player"
-          name="game-mode"
-          :value="0"
-          v-model="botLevel"
-        />
-        <label for="mode-player">Player</label>
-
-        <span v-for="i in 3" :key="i">
+      <div>
+        <div id="game-mode-title" class="landing-body-title">
+          <font-awesome-icon icon="fa-solid fa-gamepad" /> Game Mode
+        </div>
+        <div id="game-mode-value" class="landing-body-value">
           <input
             type="radio"
-            :id="'mode-bot-' + i"
+            id="mode-player"
             name="game-mode"
-            :value="i"
+            :value="0"
             v-model="botLevel"
           />
-          <label :for="'mode-bot-' + i">Bot Lv {{ i }}</label>
-        </span>
+          <label for="mode-player"
+            ><font-awesome-icon icon="fa-solid fa-child"
+          /></label>
+
+          <template v-for="i in 3">
+            <input
+              :key="i"
+              type="radio"
+              :id="'mode-bot-' + i"
+              name="game-mode"
+              :value="i"
+              v-model="botLevel"
+            />
+            <label :key="i" :for="'mode-bot-' + i">
+              <font-awesome-icon icon="fa-solid fa-robot" />
+              {{ "•".repeat(i) }}
+            </label>
+          </template>
+        </div>
       </div>
 
-      <div id="board-size-title" class="landing-body-title">Board Size</div>
-      <div id="board-size-value" class="landing-body-value">
-        <span v-for="i in 3" :key="i">
-          <input
-            type="radio"
-            :id="'size-' + i + 2"
-            name="board-size"
-            :value="i + 2"
-            v-model="boardSize"
-          />
-          <label :for="'size-' + i+2" v-text="i + 2 + 'x' + (i + 2)"></label>
-        </span>
+      <div>
+        <div id="board-size-title" class="landing-body-title">
+          <font-awesome-icon icon="fa-solid fa-chess-board" /> Board Size
+        </div>
+        <div id="board-size-value" class="landing-body-value">
+          <template v-for="i in 3">
+            <input
+              :key="i"
+              type="radio"
+              :id="'size-' + i + 2"
+              name="board-size"
+              :value="i + 2"
+              v-model="boardSize"
+            />
+            <label
+              :key="i"
+              :for="'size-' + i + 2"
+              v-text="i + 2 + 'x' + (i + 2)"
+            ></label>
+          </template>
+        </div>
       </div>
 
-      <div v-if="botLevel != 0">
-        <div class="landing-body-title player-name-title">Player's Name</div>
-        <div class="player-name-value"><input v-model="players.player1" /></div>
-      </div>
-      <div v-else>
+      <div>
         <div class="landing-body-title player-name-title">Player One</div>
-        <div class="player-name-value"><input v-model="players.player1" /></div>
-        <div class="landing-body-title player-name-title">Player Two</div>
-        <div class="player-name-value"><input v-model="players.player2" /></div>
+        <div class="player-name-value">
+          <input v-model="players.player1" />
+        </div>
       </div>
+      <div v-if="botLevel == 0">
+        <div class="landing-body-title player-name-title">Player Two</div>
+        <div class="player-name-value">
+          <input v-model="players.player2" />
+        </div>
+      </div>
+      <div v-else></div>
 
       <nuxt-link
         :to="{
@@ -78,54 +100,76 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "~assets/scss/_colors";
+@import "~assets/scss/_mixins";
+
 .landing-title {
   padding: 20px 0;
   text-align: center;
   font-size: xxx-large;
   color: $primary-darker;
-  background-color: $secondary-lighter;
+  border-bottom: 5px solid $secondary;
   font-family: system-ui;
   font-weight: bolder;
 }
 
 #landing-body {
+  @include centerer;
   display: grid;
+  grid-template-columns: 250px 250px;
   row-gap: 10px;
   align-content: start;
   justify-items: center;
   justify-content: center;
-  position: fixed;
-  height: 100%;
-  width: 100%;
-  padding-top: 15vh;
-  background-color: $primary-lighter;
+  padding: 20px;
+  box-sizing: border-box;
+  border: 5px solid $primary-darkest;
+  background-color: $primary;
 
   .landing-body-title {
     font-size: xx-large;
-    color: $primary-darker;
+    color: $primary-darkest;
     font-family: monospace;
     font-weight: bolder;
   }
 
   .landing-body-value {
+    text-align: center;
+    justify-content: space-around;
+    display: grid;
+    grid-template-columns: 80px 80px;
+    grid-template-rows: 80px 80px;
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+
     input[type="radio"] {
       opacity: 0;
       position: fixed;
       width: 0;
+
+      &:checked + label {
+        background-color: $tertiary-lighter;
+        border-color: $tertiary;
+      }
     }
 
     label {
-      display: inline-block;
-      background-color: #ddd;
-      padding: 10px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background-color: white;
+      padding: 10px;
       font-family: sans-serif, Arial;
-      border: 2px solid #444;
+      font-size: x-large;
+      line-height: 20px;
+      border: 2px solid $secondary-lightest;
       border-radius: 4px;
-    }
+      color: $secondary;
 
-    input[type="radio"]:checked + label {
-      background-color: #bfb;
-      border-color: #4c4;
+      svg {
+        font-size: xx-large;
+      }
     }
   }
 }
